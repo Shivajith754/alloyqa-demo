@@ -224,6 +224,143 @@
       font-size: 15px;
     }
 
+    .pricing {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .faq {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .pricing .section-heading {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      background: white;
+    }
+
+    .pricing-card.featured {
+      border-color: #171717;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-card h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .pricing-card-label {
+      margin-bottom: 8px;
+      color: #707070;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pricing-card p {
+      min-height: 48px;
+      margin: 8px 0 24px;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      border-top: 1px solid #e3e3e3;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e3e3e3;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 22px 36px 22px 0;
+      position: relative;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      color: #777;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      max-width: 680px;
+      margin: -8px 0 22px;
+      color: #707070;
+      font-size: 15px;
+    }
+
+    .price {
+      margin-bottom: 24px;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .price span {
+      color: #777;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .pricing-card .button {
+      width: 100%;
+      margin-bottom: 28px;
+    }
+
+    .pricing-card ul {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 24px 0 0;
+      border-top: 1px solid #ededed;
+      color: #5f5f5f;
+      font-size: 14px;
+      list-style: none;
+    }
+
+    .pricing-card li::before {
+      content: "✓";
+      margin-right: 10px;
+      color: #171717;
+      font-weight: 700;
+    }
+
     .cta {
       padding: 120px 0;
       text-align: center;
@@ -276,6 +413,10 @@
         grid-template-columns: 1fr;
       }
 
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
       .preview-inner {
         min-height: 240px;
       }
@@ -296,6 +437,8 @@
 
         <div class="nav-links">
           <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
@@ -370,6 +513,97 @@
               attention next.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-heading">
+          <span>Pricing</span>
+          <h2>Simple plans for every stage.</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <h3>Starter</h3>
+            <p>For trying out a better way to move ideas forward.</p>
+            <div class="price">$0 <span>/ forever</span></div>
+            <a class="button button-secondary" href="#get-started">Get started</a>
+            <ul>
+              <li>1 active project</li>
+              <li>Unlimited tasks</li>
+              <li>Basic collaboration</li>
+            </ul>
+          </article>
+
+          <article class="pricing-card featured">
+            <div class="pricing-card-label">Most popular</div>
+            <h3>Pro</h3>
+            <p>For small teams ready to build with more momentum.</p>
+            <div class="price">$19 <span>/ user / month</span></div>
+            <a class="button button-primary" href="#get-started">Start building</a>
+            <ul>
+              <li>Unlimited projects</li>
+              <li>Advanced collaboration</li>
+              <li>Project insights</li>
+            </ul>
+          </article>
+
+          <article class="pricing-card">
+            <h3>Scale</h3>
+            <p>For teams that need clarity across every initiative.</p>
+            <div class="price">$29 <span>/ user / month</span></div>
+            <a class="button button-secondary" href="#get-started">Talk to us</a>
+            <ul>
+              <li>Everything in Growth</li>
+              <li>Unlimited team members</li>
+              <li>Priority support</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <span>FAQ</span>
+          <h2>Questions, answered.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is Launchpad?</summary>
+            <p>
+              Launchpad is a simple workspace for small teams to plan, build,
+              and keep their product work moving forward.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Who is Launchpad for?</summary>
+            <p>
+              It is built for fast-moving teams that want clarity and momentum
+              without adding unnecessary process.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do we get started?</summary>
+            <p>
+              Start by gathering your next pieces of work, making priorities
+              clear, and inviting your team to build together.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can we use Launchpad as our team grows?</summary>
+            <p>
+              Yes. Launchpad keeps the work visible and gives everyone a clear
+              view of what is happening and what needs attention next.
+            </p>
+          </details>
         </div>
       </div>
     </section>
