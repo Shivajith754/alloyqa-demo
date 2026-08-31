@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Launchpad — Build and ship faster</title>
+  <meta
+    name="description"
+    content="A simple demo product landing page."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: #161616;
+      background: #fafafa;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid #e8e8e8;
+      background: rgba(250, 250, 250, 0.92);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      color: #5f5f5f;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: #171717;
+      color: white;
+    }
+
+    .button-secondary {
+      border: 1px solid #d8d8d8;
+      background: white;
+    }
+
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid #dddddd;
+      border-radius: 999px;
+      background: white;
+      font-size: 13px;
+      color: #616161;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0 auto;
+      font-size: clamp(48px, 7vw, 80px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      font-weight: 750;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 28px auto 0;
+      font-size: 19px;
+      color: #666;
+    }
+
+    .hero-actions {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .preview {
+      margin-top: 72px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid #dedede;
+      background: white;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+    }
+
+    .preview-inner {
+      min-height: 340px;
+      border-radius: 12px;
+      background:
+        linear-gradient(#f7f7f7 1px, transparent 1px),
+        linear-gradient(90deg, #f7f7f7 1px, transparent 1px);
+      background-size: 24px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 14px;
+    }
+
+    .features {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .section-heading {
+      max-width: 620px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading span {
+      font-size: 13px;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0 0;
+      font-size: clamp(36px, 4vw, 52px);
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      padding: 28px;
+      min-height: 230px;
+    }
+
+    .feature-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 48px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      margin: 0 0 8px;
+      letter-spacing: -0.025em;
+    }
+
+    .feature-card p {
+      color: #707070;
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .cta {
+      padding: 120px 0;
+      text-align: center;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .cta h2 {
+      margin: 0 auto;
+      max-width: 700px;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .cta p {
+      margin: 20px auto 30px;
+      color: #707070;
+      max-width: 500px;
+    }
+
+    footer {
+      border-top: 1px solid #e8e8e8;
+      padding: 32px 0;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 90px 0 70px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-inner {
+        min-height: 240px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#">Launchpad</a>
+
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <a class="button button-primary" href="#get-started">
+          Get started
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Built for fast-moving teams</div>
+
+        <h1>Turn your next idea into something real.</h1>
+
+        <p>
+          Launchpad gives small teams a simple place to plan, build,
+          and move their product forward.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#get-started">
+            Start building
+          </a>
+          <a class="button button-secondary" href="#features">
+            See how it works
+          </a>
+        </div>
+
+        <div class="preview">
+          <div class="preview-inner">
+            Your product starts here
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <span>Features</span>
+          <h2>Everything you need to keep moving.</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-number">01</div>
+            <h3>Stay focused</h3>
+            <p>
+              Keep the work that matters visible without filling your day
+              with unnecessary process.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">02</div>
+            <h3>Move faster</h3>
+            <p>
+              Turn ideas into clear pieces of work and keep progress moving
+              without losing context.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">03</div>
+            <h3>Ship together</h3>
+            <p>
+              Give everyone a clear view of what is happening and what needs
+              attention next.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="get-started">
+      <div class="container">
+        <h2>Ready to build what comes next?</h2>
+        <p>
+          Start simple, keep moving, and turn the work into something
+          people can use.
+        </p>
+
+        <a class="button button-primary" href="#">
+          Get started
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-content">
+      <div>© 2026 Launchpad</div>
+
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
