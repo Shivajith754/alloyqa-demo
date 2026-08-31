@@ -224,6 +224,85 @@
       font-size: 15px;
     }
 
+    .pricing {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      background: white;
+    }
+
+    .pricing-card.is-featured {
+      border-color: #171717;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-card h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .pricing-card > p {
+      min-height: 48px;
+      margin: 8px 0 24px;
+      color: #707070;
+      font-size: 15px;
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .price strong {
+      font-size: 40px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .price span {
+      color: #707070;
+      font-size: 14px;
+    }
+
+    .pricing-card .button {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .pricing-features {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 28px;
+      padding: 0;
+      color: #4f4f4f;
+      font-size: 14px;
+      list-style: none;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      display: inline-block;
+      width: 22px;
+      color: #171717;
+      font-weight: 700;
+    }
+
     .cta {
       padding: 120px 0;
       text-align: center;
@@ -276,6 +355,14 @@
         grid-template-columns: 1fr;
       }
 
+      .pricing {
+        padding: 70px 0;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
       .preview-inner {
         min-height: 240px;
       }
@@ -296,6 +383,7 @@
 
         <div class="nav-links">
           <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
@@ -369,6 +457,76 @@
               Give everyone a clear view of what is happening and what needs
               attention next.
             </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-heading">
+          <span>Pricing</span>
+          <h2>Plans that grow with your team.</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <h3>Starter</h3>
+            <p>For individuals getting a new idea off the ground.</p>
+
+            <div class="price">
+              <strong>$0</strong>
+              <span>forever</span>
+            </div>
+
+            <ul class="pricing-features">
+              <li>1 active project</li>
+              <li>Unlimited tasks</li>
+              <li>Personal workspace</li>
+            </ul>
+
+            <a class="button button-secondary" href="#get-started">
+              Get started
+            </a>
+          </article>
+
+          <article class="pricing-card is-featured">
+            <h3>Team</h3>
+            <p>For small teams building and shipping together.</p>
+
+            <div class="price">
+              <strong>$18</strong>
+              <span>per user / month</span>
+            </div>
+
+            <ul class="pricing-features">
+              <li>Unlimited projects</li>
+              <li>Shared team workspace</li>
+              <li>Progress tracking</li>
+            </ul>
+
+            <a class="button button-primary" href="#get-started">
+              Start free trial
+            </a>
+          </article>
+
+          <article class="pricing-card">
+            <h3>Scale</h3>
+            <p>For growing teams that need more room to move.</p>
+
+            <div class="price">
+              <strong>Custom</strong>
+            </div>
+
+            <ul class="pricing-features">
+              <li>Everything in Team</li>
+              <li>Advanced permissions</li>
+              <li>Dedicated support</li>
+            </ul>
+
+            <a class="button button-secondary" href="#contact">
+              Talk to us
+            </a>
           </article>
         </div>
       </div>
