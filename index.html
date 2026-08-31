@@ -224,6 +224,56 @@
       font-size: 15px;
     }
 
+    .faq {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      border-top: 1px solid #dcdcdc;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 0;
+      cursor: pointer;
+      list-style: none;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      color: #777;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      max-width: 650px;
+      margin: -8px 0 24px;
+      color: #707070;
+      font-size: 15px;
+    }
+
     .cta {
       padding: 120px 0;
       text-align: center;
@@ -296,6 +346,7 @@
 
         <div class="nav-links">
           <a href="#features">Features</a>
+          <a href="#faq">FAQ</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
@@ -370,6 +421,49 @@
               attention next.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <span>FAQ</span>
+          <h2>Answers to common questions.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is Launchpad?</summary>
+            <p>
+              Launchpad is a simple workspace for small teams to plan, build,
+              and keep product work moving forward.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Who is Launchpad for?</summary>
+            <p>
+              It is built for fast-moving teams that want to stay focused
+              without adding unnecessary process.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How quickly can we get started?</summary>
+            <p>
+              Start with the work that matters most, bring your team together,
+              and begin building right away.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can we invite the whole team?</summary>
+            <p>
+              Yes. Launchpad is designed to give everyone a clear view of what
+              is happening and what needs attention next.
+            </p>
+          </details>
         </div>
       </div>
     </section>
