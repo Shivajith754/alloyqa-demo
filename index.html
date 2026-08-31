@@ -224,6 +224,54 @@
       font-size: 15px;
     }
 
+    .faq {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      border-top: 1px solid #e3e3e3;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e3e3e3;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 22px 36px 22px 0;
+      position: relative;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      color: #777;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      max-width: 680px;
+      margin: -8px 0 22px;
+      color: #707070;
+      font-size: 15px;
+    }
+
     .cta {
       padding: 120px 0;
       text-align: center;
@@ -296,6 +344,7 @@
 
         <div class="nav-links">
           <a href="#features">Features</a>
+          <a href="#faq">FAQ</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
@@ -370,6 +419,49 @@
               attention next.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <span>FAQ</span>
+          <h2>Questions, answered.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is Launchpad?</summary>
+            <p>
+              Launchpad is a simple workspace for small teams to plan, build,
+              and keep their product work moving forward.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Who is Launchpad for?</summary>
+            <p>
+              It is built for fast-moving teams that want clarity and momentum
+              without adding unnecessary process.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do we get started?</summary>
+            <p>
+              Start by gathering your next pieces of work, making priorities
+              clear, and inviting your team to build together.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can we use Launchpad as our team grows?</summary>
+            <p>
+              Yes. Launchpad keeps the work visible and gives everyone a clear
+              view of what is happening and what needs attention next.
+            </p>
+          </details>
         </div>
       </div>
     </section>
