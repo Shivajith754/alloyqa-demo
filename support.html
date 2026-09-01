@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Launchpad</title>
+  <meta
+    name="description"
+    content="Find answers and get help with Launchpad."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: #161616;
+      background: #fafafa;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid #e8e8e8;
+      background: rgba(250, 250, 250, 0.92);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      color: #5f5f5f;
+    }
+
+    .nav-links a[aria-current="page"] {
+      color: #171717;
+      font-weight: 600;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
+      background: white;
+      color: #171717;
+      cursor: pointer;
+    }
+
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: #171717;
+      color: white;
+    }
+
+    .support-hero {
+      padding: 112px 0 84px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid #dddddd;
+      border-radius: 999px;
+      background: white;
+      font-size: 13px;
+      color: #616161;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(48px, 7vw, 76px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      font-weight: 750;
+    }
+
+    .support-hero p {
+      max-width: 560px;
+      margin: 24px auto 0;
+      font-size: 19px;
+      color: #666;
+    }
+
+    .support-content {
+      padding: 0 0 112px;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .support-card {
+      padding: 28px;
+      min-height: 220px;
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      background: white;
+    }
+
+    .support-card-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 42px;
+      border-radius: 9px;
+      background: #f1f1f1;
+      font-size: 16px;
+    }
+
+    .support-card h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .support-card p {
+      margin: 0 0 18px;
+      color: #707070;
+      font-size: 15px;
+    }
+
+    .support-card a {
+      color: #171717;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .faq {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .section-heading {
+      max-width: 620px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading span {
+      font-size: 13px;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0 0;
+      font-size: clamp(36px, 4vw, 52px);
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      border-top: 1px solid #e3e3e3;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e3e3e3;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 22px 36px 22px 0;
+      position: relative;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      color: #777;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      max-width: 680px;
+      margin: -8px 0 22px;
+      color: #707070;
+      font-size: 15px;
+    }
+
+    footer {
+      border-top: 1px solid #e8e8e8;
+      padding: 32px 0;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    @media (max-width: 760px) {
+      nav {
+        gap: 12px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-menu {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 0 0 16px;
+      }
+
+      .mobile-menu.open {
+        display: grid;
+      }
+
+      .mobile-menu a {
+        padding: 12px;
+        border: 1px solid #e3e3e3;
+        border-radius: 10px;
+        background: white;
+        color: #5f5f5f;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .support-hero {
+        padding: 90px 0 68px;
+      }
+
+      .support-content {
+        padding-bottom: 80px;
+      }
+
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq {
+        padding: 80px 0;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="index.html">Launchpad</a>
+
+        <div class="nav-links">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="support.html" aria-current="page">Support</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+
+        <a class="button button-primary" href="index.html#get-started">
+          Get started
+        </a>
+      </nav>
+
+      <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="support.html" aria-current="page">Support</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="support-hero">
+      <div class="container">
+        <div class="eyebrow">Here to help</div>
+        <h1>How can we help?</h1>
+        <p>
+          Find quick answers, learn the basics, or get in touch with the
+          Launchpad team.
+        </p>
+      </div>
+    </section>
+
+    <section class="support-content">
+      <div class="container">
+        <div class="support-grid">
+          <article class="support-card">
+            <div class="support-card-icon" aria-hidden="true">?</div>
+            <h2>Browse the FAQ</h2>
+            <p>Find answers to common questions about Launchpad.</p>
+            <a href="#faq">View common questions →</a>
+          </article>
+
+          <article class="support-card">
+            <div class="support-card-icon" aria-hidden="true">→</div>
+            <h2>Getting started</h2>
+            <p>Learn how to plan your first project and invite your team.</p>
+            <a href="index.html#how-it-works">See how it works →</a>
+          </article>
+
+          <article class="support-card">
+            <div class="support-card-icon" aria-hidden="true">@</div>
+            <h2>Contact support</h2>
+            <p>Still need a hand? Our team is ready to help you move forward.</p>
+            <a href="mailto:support@launchpad.example">Email support →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <span>Support FAQ</span>
+          <h2>Answers for getting unstuck.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I get started with Launchpad?</summary>
+            <p>
+              Start a project, add your next pieces of work, and invite your
+              team from the workspace.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do I invite teammates?</summary>
+            <p>
+              Open your project settings and use the team invitation option to
+              share access with the people you work with.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I change my plan?</summary>
+            <p>
+              Yes. You can move between plans as your team’s needs change.
+              Contact support if you need help choosing the right plan.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Where can I report a problem?</summary>
+            <p>
+              Email support@launchpad.example with a description of the issue
+              and we’ll help you get back on track.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-content">
+      <div>© 2026 Launchpad</div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="support.html">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      });
+    });
+  </script>
+</body>
+</html>
