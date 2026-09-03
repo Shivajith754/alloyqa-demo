@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Launchpad</title>
+  <meta
+    name="description"
+    content="Learn about Launchpad, our story, and our mission to help teams build and ship faster."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: #ffffff;
+      background: #000000;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid #222222;
+      background: rgba(0, 0, 0, 0.92);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      color: #a1a1a1;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid #333333;
+      border-radius: 10px;
+      background: #171717;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .button-secondary {
+      border: 1px solid #333333;
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid #333333;
+      border-radius: 999px;
+      background: #111111;
+      font-size: 13px;
+      color: #a1a1a1;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0 auto;
+      font-size: clamp(48px, 7vw, 80px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      font-weight: 750;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 28px auto 0;
+      font-size: 19px;
+      color: #a1a1a1;
+    }
+
+    .hero-actions {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .story,
+    .values {
+      padding: 100px 0;
+      border-top: 1px solid #222222;
+    }
+
+    .section-heading {
+      max-width: 620px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading span {
+      font-size: 13px;
+      color: #888888;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0 0;
+      font-size: clamp(36px, 4vw, 52px);
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .story-content {
+      max-width: 760px;
+      font-size: 18px;
+      color: #a1a1a1;
+      line-height: 1.7;
+    }
+
+    .story-content p {
+      margin: 0 0 24px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: #111111;
+      border: 1px solid #222222;
+      border-radius: 16px;
+      padding: 28px;
+      min-height: 230px;
+    }
+
+    .feature-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: #222222;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 48px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      margin: 0 0 8px;
+      letter-spacing: -0.025em;
+    }
+
+    .feature-card p {
+      color: #a1a1a1;
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .cta {
+      padding: 120px 0;
+      text-align: center;
+      border-top: 1px solid #222222;
+    }
+
+    .cta h2 {
+      margin: 0 auto;
+      max-width: 700px;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .cta p {
+      margin: 20px auto 30px;
+      color: #a1a1a1;
+      max-width: 500px;
+    }
+
+    footer {
+      border-top: 1px solid #222222;
+      padding: 32px 0;
+      color: #888888;
+      font-size: 14px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    @media (max-width: 760px) {
+      nav {
+        gap: 12px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-menu {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 0 0 16px;
+      }
+
+      .mobile-menu.open {
+        display: grid;
+      }
+
+      .mobile-menu a {
+        padding: 12px;
+        border: 1px solid #222222;
+        border-radius: 10px;
+        background: #111111;
+        color: #a1a1a1;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .hero {
+        padding: 90px 0 70px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="index.html">Launchpad</a>
+
+        <div class="nav-links">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="about.html">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+
+        <a class="button button-primary" href="index.html#get-started">
+          Get started
+        </a>
+      </nav>
+
+      <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Made by Launchpad</div>
+
+        <h1>Building tools for fast-moving teams.</h1>
+
+        <p>
+          We are dedicated to helping creators, developers, and product teams
+          turn ideas into real products with speed and clarity.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="index.html#get-started">
+            Start building
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="our-story">
+      <div class="container">
+        <div class="section-heading">
+          <span>Our Story</span>
+          <h2>How Launchpad came to be.</h2>
+        </div>
+
+        <div class="story-content">
+          <p>
+            Launchpad was created after experiencing firsthand how traditional product management tools often slow teams down with unnecessary process, bloated settings, and complex workflows.
+          </p>
+          <p>
+            We set out to build a streamlined workspace designed specifically for ambitious teams who want to keep momentum high, stay focused on priorities, and ship great software faster.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="values" id="company-values">
+      <div class="container">
+        <div class="section-heading">
+          <span>Company Values</span>
+          <h2>Principles that guide everything we do.</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-number">01</div>
+            <h3>Speed &amp; Clarity</h3>
+            <p>We prioritize clear interfaces and rapid feedback loops so teams never get stuck in process.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">02</div>
+            <h3>Focus on Outcomes</h3>
+            <p>We eliminate unnecessary distraction so developers and product managers can focus on real impact.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-number">03</div>
+            <h3>Continuous Momentum</h3>
+            <p>Small, consistent shipments build compounding value for users and teams alike.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to build what comes next?</h2>
+        <p>
+          Start simple, keep moving, and turn your work into something people can use.
+        </p>
+
+        <a class="button button-primary" href="index.html#get-started">
+          Get started
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-content">
+      <div>© 2026 Launchpad</div>
+
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      });
+    });
+  </script>
+</body>
+</html>
