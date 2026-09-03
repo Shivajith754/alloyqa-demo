@@ -256,6 +256,57 @@
       border-top: 1px solid #e8e8e8;
     }
 
+    .about {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 80px;
+      align-items: end;
+    }
+
+    .about-copy {
+      max-width: 560px;
+      color: #666;
+      font-size: 18px;
+    }
+
+    .about-copy p {
+      margin: 0 0 18px;
+    }
+
+    .about-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-note {
+      padding: 28px;
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      background: white;
+    }
+
+    .about-note span {
+      display: block;
+      margin-bottom: 36px;
+      color: #777;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .about-note p {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
     .pricing .section-heading {
       margin-left: auto;
       margin-right: auto;
@@ -467,6 +518,11 @@
 
       .pricing-grid {
         grid-template-columns: 1fr;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
 
       .preview-inner {
@@ -705,6 +761,35 @@
             </p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-content">
+        <div>
+          <div class="section-heading">
+            <span>About us</span>
+            <h2>Make room for the work that matters.</h2>
+          </div>
+
+          <div class="about-copy">
+            <p>
+              Launchpad is a simple workspace for teams with ideas worth
+              building. We believe progress is easier when priorities are
+              clear, collaboration feels natural, and the next step is easy
+              to see.
+            </p>
+            <p>
+              Everything we make is designed to help people spend less time
+              managing the work and more time moving it forward.
+            </p>
+          </div>
+        </div>
+
+        <aside class="about-note">
+          <span>Our point of view</span>
+          <p>Good work happens when teams have clarity and momentum.</p>
+        </aside>
       </div>
     </section>
 
