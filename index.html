@@ -251,6 +251,66 @@
       border-top: 1px solid #e8e8e8;
     }
 
+    .testimonials {
+      padding: 100px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .testimonial-card {
+      background: white;
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .testimonial-quote {
+      color: #333;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 0 24px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      color: #171717;
+    }
+
+    .testimonial-info h4 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .testimonial-info p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: #707070;
+    }
+
     .faq {
       padding: 100px 0;
       border-top: 1px solid #e8e8e8;
@@ -405,9 +465,72 @@
 
     footer {
       border-top: 1px solid #e8e8e8;
-      padding: 32px 0;
+      padding: 48px 0 32px;
       color: #777;
       font-size: 14px;
+    }
+
+    .footer-newsletter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      padding-bottom: 40px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .newsletter-info h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #161616;
+      margin: 0 0 6px;
+      letter-spacing: -0.025em;
+    }
+
+    .newsletter-info p {
+      margin: 0;
+      color: #707070;
+      font-size: 15px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 420px;
+      align-items: center;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      height: 44px;
+      padding: 0 16px;
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #161616;
+      background: white;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .newsletter-input:focus {
+      border-color: #171717;
+      box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.1);
+    }
+
+    .newsletter-input::placeholder {
+      color: #999;
+    }
+
+    .newsletter-success {
+      display: none;
+      color: #161616;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 0;
     }
 
     .footer-content {
@@ -469,8 +592,28 @@
         grid-template-columns: 1fr;
       }
 
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
       .preview-inner {
         min-height: 240px;
+      }
+
+      .footer-newsletter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .newsletter-form {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .newsletter-form .button {
+        width: 100%;
       }
 
       .footer-content {
@@ -490,6 +633,7 @@
         <div class="nav-links">
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
+          <a href="#testimonials">Testimonials</a>
           <a href="#faq">FAQ</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
@@ -515,6 +659,7 @@
       <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
@@ -665,6 +810,56 @@
       </div>
     </section>
 
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-heading">
+          <span>Testimonials</span>
+          <h2>Loved by teams moving fast.</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <p class="testimonial-quote">
+              "Launchpad has completely transformed how our team plans and ships software. We eliminated half of our sync meetings in week one."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AL</div>
+              <div class="testimonial-info">
+                <h4>Alex Liang</h4>
+                <p>Engineering Lead at Pulse</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-quote">
+              "The clarity Launchpad provides is unmatched. Everyone knows what to work on next, and progress is always visible."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SR</div>
+              <div class="testimonial-info">
+                <h4>Sarah Rivera</h4>
+                <p>Product Manager at Acme</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-quote">
+              "Simple, fast, and stays out of the way. It is the exact tool we needed to keep momentum without getting bogged down."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MC</div>
+              <div class="testimonial-info">
+                <h4>Marcus Chen</h4>
+                <p>Founder at Craft Labs</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="faq" id="faq">
       <div class="container">
         <div class="section-heading">
@@ -724,13 +919,33 @@
   </main>
 
   <footer id="contact">
-    <div class="container footer-content">
-      <div>© 2026 Launchpad</div>
+    <div class="container">
+      <div class="footer-newsletter">
+        <div class="newsletter-info">
+          <h3>Subscribe to our newsletter</h3>
+          <p>Get the latest product updates, news, and insights delivered to your inbox.</p>
+        </div>
+        <form class="newsletter-form" action="#" method="post">
+          <input
+            type="email"
+            class="newsletter-input"
+            placeholder="Enter your email"
+            required
+            aria-label="Email address"
+          />
+          <button type="submit" class="button button-primary">Subscribe</button>
+          <div class="newsletter-success" role="status">Thanks for subscribing!</div>
+        </form>
+      </div>
 
-      <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Contact</a>
+      <div class="footer-content">
+        <div>© 2026 Launchpad</div>
+
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -755,6 +970,21 @@
         menuToggle.setAttribute("aria-label", "Open navigation menu");
       });
     });
+
+    const newsletterForm = document.querySelector(".newsletter-form");
+    if (newsletterForm) {
+      newsletterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = newsletterForm.querySelector(".newsletter-input");
+        const btn = newsletterForm.querySelector("button");
+        const successMsg = newsletterForm.querySelector(".newsletter-success");
+        if (input && input.value) {
+          input.style.display = "none";
+          if (btn) btn.style.display = "none";
+          if (successMsg) successMsg.style.display = "block";
+        }
+      });
+    }
   </script>
 </body>
 </html>
