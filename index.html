@@ -405,9 +405,69 @@
 
     footer {
       border-top: 1px solid #e8e8e8;
-      padding: 32px 0;
+      padding: 48px 0 32px;
       color: #777;
       font-size: 14px;
+    }
+
+    .footer-newsletter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .newsletter-info h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #171717;
+      margin-bottom: 6px;
+    }
+
+    .newsletter-info p {
+      color: #666;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 420px;
+      flex-shrink: 0;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      min-width: 0;
+      height: 44px;
+      padding: 0 16px;
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #171717;
+      background: white;
+      transition: border-color 0.15s ease;
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      border-color: #171717;
+    }
+
+    .newsletter-input::placeholder {
+      color: #999;
+    }
+
+    .newsletter-form .button {
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     .footer-content {
@@ -473,9 +533,29 @@
         min-height: 240px;
       }
 
+      .footer-newsletter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .newsletter-form {
+        max-width: 100%;
+      }
+
       .footer-content {
         flex-direction: column;
         align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-form .button {
+        width: 100%;
       }
     }
   </style>
@@ -724,13 +804,26 @@
   </main>
 
   <footer id="contact">
-    <div class="container footer-content">
-      <div>© 2026 Launchpad</div>
+    <div class="container">
+      <div class="footer-newsletter">
+        <div class="newsletter-info">
+          <h3>Subscribe to our newsletter</h3>
+          <p>Get the latest news, updates, and product announcements sent directly to your inbox.</p>
+        </div>
+        <form class="newsletter-form" action="#" method="post">
+          <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email address" />
+          <button type="submit" class="button button-primary">Subscribe</button>
+        </form>
+      </div>
 
-      <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Contact</a>
+      <div class="footer-content">
+        <div>© 2026 Launchpad</div>
+
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -755,6 +848,17 @@
         menuToggle.setAttribute("aria-label", "Open navigation menu");
       });
     });
+
+    const newsletterForm = document.querySelector(".newsletter-form");
+    if (newsletterForm) {
+      newsletterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = newsletterForm.querySelector(".newsletter-input");
+        if (input) {
+          input.value = "";
+        }
+      });
+    }
   </script>
 </body>
 </html>
