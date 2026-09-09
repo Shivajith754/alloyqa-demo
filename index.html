@@ -316,6 +316,60 @@
       border-top: 1px solid #e8e8e8;
     }
 
+    .pricing-toggle-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+
+    .pricing-toggle {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f1f1;
+      border: 1px solid #e3e3e3;
+      border-radius: 999px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .pricing-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: #666;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .pricing-toggle-btn:hover {
+      color: #171717;
+    }
+
+    .pricing-toggle-btn.active {
+      background: white;
+      color: #171717;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-discount-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #171717;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
     .pricing .section-heading {
       margin-left: auto;
       margin-right: auto;
@@ -799,11 +853,33 @@
           <h2>Simple plans for every stage.</h2>
         </div>
 
+        <div class="pricing-toggle-wrapper">
+          <div class="pricing-toggle" role="group" aria-label="Billing frequency">
+            <button
+              type="button"
+              class="pricing-toggle-btn active"
+              data-plan="monthly"
+              aria-pressed="true"
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              class="pricing-toggle-btn"
+              data-plan="yearly"
+              aria-pressed="false"
+            >
+              Yearly
+              <span class="pricing-discount-badge">Save 20%</span>
+            </button>
+          </div>
+        </div>
+
         <div class="pricing-grid">
           <article class="pricing-card">
             <h3>Starter</h3>
             <p>For trying out a better way to move ideas forward.</p>
-            <div class="price">$0 <span>/ forever</span></div>
+            <div class="price" data-monthly="$0" data-monthly-period="/ forever" data-yearly="$0" data-yearly-period="/ forever">$0 <span>/ forever</span></div>
             <a class="button button-secondary" href="#get-started">Get started</a>
             <ul>
               <li>1 active project</li>
@@ -816,7 +892,7 @@
             <div class="pricing-card-label">Most popular</div>
             <h3>Pro</h3>
             <p>For small teams ready to build with more momentum.</p>
-            <div class="price">Contact sales</div>
+            <div class="price" data-monthly="$29" data-monthly-period="/ month" data-yearly="$23" data-yearly-period="/ month">$29 <span>/ month</span></div>
             <a class="button button-primary" href="#get-started">Start building</a>
             <ul>
               <li>Unlimited projects</li>
@@ -828,7 +904,7 @@
           <article class="pricing-card">
             <h3>Scale</h3>
             <p>For teams that need clarity across every initiative.</p>
-            <div class="price">$99 <span>/ month</span></div>
+            <div class="price" data-monthly="$99" data-monthly-period="/ month" data-yearly="$79" data-yearly-period="/ month">$99 <span>/ month</span></div>
             <a class="button button-secondary" href="#get-started">Contact sales</a>
             <ul>
               <li>Everything in Growth</li>
@@ -1128,6 +1204,36 @@
             btn.textContent = originalBtnText;
           }
         }
+      });
+    }
+
+    const toggleBtns = document.querySelectorAll(".pricing-toggle-btn");
+    const priceElements = document.querySelectorAll(".pricing-card .price");
+
+    if (toggleBtns.length > 0) {
+      toggleBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const selectedPlan = btn.getAttribute("data-plan");
+
+          toggleBtns.forEach((b) => {
+            const isActive = b === btn;
+            b.classList.toggle("active", isActive);
+            b.setAttribute("aria-pressed", isActive ? "true" : "false");
+          });
+
+          priceElements.forEach((priceEl) => {
+            const amount = priceEl.getAttribute(`data-${selectedPlan}`);
+            const period = priceEl.getAttribute(`data-${selectedPlan}-period`);
+
+            if (amount !== null) {
+              if (period) {
+                priceEl.innerHTML = `${amount} <span>${period}</span>`;
+              } else {
+                priceEl.textContent = amount;
+              }
+            }
+          });
+        });
       });
     }
   </script>
