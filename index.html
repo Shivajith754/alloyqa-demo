@@ -322,6 +322,106 @@
       text-align: center;
     }
 
+    .pricing-toggle-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+      margin-bottom: 40px;
+    }
+
+    .pricing-toggle-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #f7f7f7;
+      border: 1px solid #e3e3e3;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .pricing-toggle-btn {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: #707070;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pricing-toggle-btn.active {
+      background: #ffffff;
+      color: #171717;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-discount-badge {
+      background: #171717;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+
+    .pricing-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .pricing-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .pricing-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e3e3e3;
+      transition: 0.2s ease;
+      border-radius: 24px;
+    }
+
+    .pricing-slider::before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.2s ease;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .pricing-switch input:checked + .pricing-slider {
+      background-color: #171717;
+    }
+
+    .pricing-switch input:focus-visible + .pricing-slider {
+      outline: 2px solid #171717;
+      outline-offset: 2px;
+    }
+
+    .pricing-switch input:checked + .pricing-slider::before {
+      transform: translateX(20px);
+    }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -799,8 +899,21 @@
           <h2>Simple plans for every stage.</h2>
         </div>
 
+        <div class="pricing-toggle-wrapper">
+          <div class="pricing-toggle-container">
+            <button type="button" class="pricing-toggle-btn active" data-billing="monthly" id="billing-monthly" aria-pressed="true">Monthly</button>
+            <label class="pricing-switch" for="pricing-toggle-checkbox">
+              <input type="checkbox" id="pricing-toggle-checkbox" aria-label="Toggle yearly pricing">
+              <span class="pricing-slider"></span>
+            </label>
+            <button type="button" class="pricing-toggle-btn" data-billing="yearly" id="billing-yearly" aria-pressed="false">
+              Yearly <span class="pricing-discount-badge">Save 20%</span>
+            </button>
+          </div>
+        </div>
+
         <div class="pricing-grid">
-          <article class="pricing-card">
+          <article class="pricing-card" data-plan="starter" data-price-monthly="$0" data-period-monthly="/ forever" data-price-yearly="$0" data-period-yearly="/ forever">
             <h3>Starter</h3>
             <p>For trying out a better way to move ideas forward.</p>
             <div class="price">$0 <span>/ forever</span></div>
@@ -812,11 +925,11 @@
             </ul>
           </article>
 
-          <article class="pricing-card featured">
+          <article class="pricing-card featured" data-plan="pro" data-price-monthly="$29" data-period-monthly="/ month" data-price-yearly="$24" data-period-yearly="/ month">
             <div class="pricing-card-label">Most popular</div>
             <h3>Pro</h3>
             <p>For small teams ready to build with more momentum.</p>
-            <div class="price">Contact sales</div>
+            <div class="price">$29 <span>/ month</span></div>
             <a class="button button-primary" href="#get-started">Start building</a>
             <ul>
               <li>Unlimited projects</li>
@@ -825,7 +938,7 @@
             </ul>
           </article>
 
-          <article class="pricing-card">
+          <article class="pricing-card" data-plan="scale" data-price-monthly="$99" data-period-monthly="/ month" data-price-yearly="$79" data-period-yearly="/ month">
             <h3>Scale</h3>
             <p>For teams that need clarity across every initiative.</p>
             <div class="price">$99 <span>/ month</span></div>
@@ -1128,6 +1241,54 @@
             btn.textContent = originalBtnText;
           }
         }
+      });
+    }
+    const toggleCheckbox = document.getElementById("pricing-toggle-checkbox");
+    const pricingToggleBtns = document.querySelectorAll(".pricing-toggle-btn");
+    const pricingCards = document.querySelectorAll(".pricing-card");
+
+    function updatePricing(frequency) {
+      const isYearly = frequency === "yearly";
+
+      if (toggleCheckbox) {
+        toggleCheckbox.checked = isYearly;
+      }
+
+      pricingToggleBtns.forEach((btn) => {
+        const isSelected = btn.getAttribute("data-billing") === frequency;
+        btn.classList.toggle("active", isSelected);
+        btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+      });
+
+      pricingCards.forEach((card) => {
+        const priceElement = card.querySelector(".price");
+        if (!priceElement) return;
+
+        const price = card.getAttribute(`data-price-${frequency}`);
+        const period = card.getAttribute(`data-period-${frequency}`);
+
+        if (price !== null) {
+          if (period) {
+            priceElement.innerHTML = `${price} <span>${period}</span>`;
+          } else {
+            priceElement.textContent = price;
+          }
+        }
+      });
+    }
+
+    pricingToggleBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const billing = btn.getAttribute("data-billing");
+        if (billing) {
+          updatePricing(billing);
+        }
+      });
+    });
+
+    if (toggleCheckbox) {
+      toggleCheckbox.addEventListener("change", () => {
+        updatePricing(toggleCheckbox.checked ? "yearly" : "monthly");
       });
     }
   </script>
